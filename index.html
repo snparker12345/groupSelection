@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head> <h3>Sorting Tool</h3>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <script src="script.js"></script>
+  <span style="float:left">
+  <form>
+  <fieldset>
+    <legend>Sort By:</legend>
+    
+    <input type="radio" id="eyeColor" name="sorting">
+    <label for="eyecolor">eye color</label><br/>
+
+    <input type="radio" id="hairColor" name="sorting">
+    <label for="haircolor">hair color</label><br/>
+
+    <input type="radio" id="languageSpoken" name="sorting">
+    <label for="language">language spoken</label>
+    <br/></br>
+    
+    <button class="simple" type="button" id = "sort">
+    Sort </button>
+    
+  </fieldset>  
+  </form>
+  </span>
+  
+  <span style="float: right">
+    <details>
+    <summary> People </summary>
+      <details><summary>Julie</summary>
+        hair color: brown </br>
+        eye color: blue </br>
+        language spoken: english </br>
+      </details>
+      <details>
+        <summary>John</summary>
+        hair color: blonde </br>
+        eye color: green </br>
+        language spoken: english </br>
+      </details>
+    </details>
+  </span>
+</body>
+<!--  <div class = "limit">This text is the content of the box </div> -->
+  <table id = "table">
+  <tr>
+    <th id = "firstColumnName"> Sort By: </th>
+    <th>Names</th>
+  </tr>
+</table>
+</html>
