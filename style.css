@@ -1,11 +1,11 @@
 
-  div {
-    background-color: white;
-    border: 2px solid black;
-    padding: 2px;
-    margin: auto;
-  
+div {
+  background-color: white;
+  border: 2px solid black;
+  padding: 2px;
+  margin: auto;
 }
+
 .limit{
     width:75px;
     margin: auto;
@@ -13,4 +13,6 @@
 
 table, th, td {
   border:1px solid black;
+  margin-left: auto;
+  margin-right: auto;
 }

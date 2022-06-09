@@ -1,4 +1,6 @@
 var eyeColor;
+var arrayOfPeople = [];
+var personArray = [];
 class Person {
   constructor(eyeColor, hairColor, languageSpoken, name) {
     this.eyeColor = eyeColor;
@@ -7,12 +9,18 @@ class Person {
     this.name = name;
   }
 }
-
-var personArray = [];
+// want to create a menu with people on it, and when someone is added they
+//are added to this menu. first their name is created, and then 
+// their language spoken + language, etc, are added. 
 function addPerson (eyeColor, hairColor, languageSpoken, name) {
   var pers = new Person(eyeColor, hairColor, languageSpoken, name);
-  personArray.push(pers);
+  arrayOfPeople.push(pers);
 }
+
+addPerson('blue', 'brown', 'english', 'julie');
+addPerson('brown', 'blonde', 'english', 'john');
+addPerson('brown', 'brown', 'spanish', 'fred');
+addPerson('green', 'blonde', 'english', 'george');
 
 var people = {};
 people['julie'] = new Person('blue', 'brown', 'english', 'julie');
@@ -20,9 +28,10 @@ people["john"] = new Person('brown', 'blonde', 'english', 'john');
 people["fred"] = new Person('brown', 'brown', 'spanish', 'fred');
 people["george"] = new Person('green', 'blonde', 'english', 'george');
 
+
 var attributes = {};
 var person;
-var val;
+var val; //all of the different attributes
 var att; // number of attributes (eyeColor)
 var value;
 // key in people is number of people
@@ -43,11 +52,14 @@ for (key in people) {
     attributes[att][val].push(person.name);
   }
 }
-
 var number;
 var tbl;
-  window.onload = function() {
+var name;
+
+
+window.onload = function() {
   document.getElementById("sort").onclick = function() {
+    // determine which item is checked
     if (document.querySelector('[id = "eyeColor"]:checked')) {
       att = 'eyeColor';
     }
@@ -59,40 +71,37 @@ var tbl;
       att = 'languageSpoken';
     }
     document.getElementById("firstColumnName").innerHTML = att;
-    
-    var stuff;
-    var arrayOfValues = [];
-    stuff = JSON.stringify(att);
-    //console.log(stuff);
-    for (value in attributes[att]) {
-      if (document.querySelector('[id =' + stuff + ']:checked')) {
-      arrayOfValues.push(value);
-      }
-    }
-    for (var j = 0; j < arrayOfValues.length; j++) {
-      appendRow();
-    }
-    function appendRow() {
-    tbl = document.getElementById("table"), row = tbl.insertRow(tbl.rows.length), i;
-    for (var i = 0; i < tbl.rows[0].cells.length; i++) {
-      createCell(row.insertCell(i), i, 'row');
-      if (tbl.rows.length > arrayOfValues.length + 1) {
-      tbl.deleteRow(1);
-    }
-    }
-    }
-    
-    function createCell(cell, i) {
-      var div = document.createElement('row'), i;
-      var txt;
-      if (i == 0) {
-        txt = document.createTextNode(arrayOfValues[j]);
-      }
-      else if (i == 1) {
-        txt = document.createTextNode('row');
-      }
-        div.appendChild(txt); 
-       cell.appendChild(div);
+    document.getElementById("sorted").innerHTML="";
+    //console.log(attributes[att]);
+    var attValues = attributes[att];
+    for (value in attValues) {
+      personArray = attValues[value];
+      appendRow(value, personArray);
     }
   }
 }
+
+window.onload = function() {
+  var overarchingDetails = document.getElementById("details");
+  var peeps = document.getElementById("sum");
+  var detailsSmaller = document.createElement("DETAILS");
+  var summaryPerson = document.createElement("SUMMARY");
+  var personName = document.createTextNode("Person Name");
+  summaryPerson.append(personName);
+  var personDescription = document.createTextNode("Description of person");
+  detailsSmaller.append(summaryPerson);
+  detailsSmaller.append(personDescription);
+  overarchingDetails.append(peeps);
+  overarchingDetails.append(detailsSmaller);
+}
+
+function appendRow(value, peopleArray) {
+  console.log(value, peopleArray);
+  tbl = document.getElementById("table").getElementsByTagName("tbody")[0];
+  var row = tbl.insertRow(0);
+  var cell1 = row.insertCell(0);
+  cell1.innerHTML = value;
+  var cell2 = row.insertCell(1);
+  cell2.innerHTML = peopleArray.join(', ');
+}
+    

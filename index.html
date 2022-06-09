@@ -25,35 +25,29 @@
     <label for="language">language spoken</label>
     <br/></br>
     
-    <button class="simple" type="button" id = "sort">
-    Sort </button>
+    <button class="simple" type="button" id = "sort"> Sort </button>
     
   </fieldset>  
   </form>
   </span>
-  
   <span style="float: right">
-    <details>
-    <summary> People </summary>
-      <details><summary>Julie</summary>
-        hair color: brown </br>
-        eye color: blue </br>
-        language spoken: english </br>
-      </details>
+    <details id = "details">
+    <summary id = "sum"> People </summary>
       <details>
         <summary>John</summary>
-        hair color: blonde </br>
-        eye color: green </br>
-        language spoken: english </br>
+        John is stupid.
       </details>
     </details>
   </span>
 </body>
-<!--  <div class = "limit">This text is the content of the box </div> -->
+<!--<div class = "limit">This text is the content of the box </div> -->
   <table id = "table">
-  <tr>
-    <th id = "firstColumnName"> Sort By: </th>
-    <th>Names</th>
-  </tr>
-</table>
+    <thead>
+      <tr>
+        <th id = "firstColumnName"> Sort By:</th>
+        <th>Names</th>
+      </tr>
+    </thead>
+    <tbody id = "sorted"></tbody>
+  </table>
 </html>
