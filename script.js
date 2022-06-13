@@ -9,9 +9,7 @@ class Person {
     this.name = name;
   }
 }
-// want to create a menu with people on it, and when someone is added they
-//are added to this menu. first their name is created, and then 
-// their language spoken + language, etc, are added. 
+
 function addPerson (eyeColor, hairColor, languageSpoken, name) {
   var pers = new Person(eyeColor, hairColor, languageSpoken, name);
   arrayOfPeople.push(pers);
@@ -32,9 +30,9 @@ people["george"] = new Person('green', 'blonde', 'english', 'george');
 var attributes = {};
 var person;
 var val; //all of the different attributes
-var att; // number of attributes (eyeColor)
+var att; // attributes (eyeColor)
 var value;
-// key in people is number of people
+// key in people is people objects in order
 
 for (key in people) {
   person = people[key];
@@ -56,7 +54,7 @@ var number;
 var tbl;
 var name;
 
-
+var totalArray = [];
 window.onload = function() {
   document.getElementById("sort").onclick = function() {
     // determine which item is checked
@@ -73,35 +71,46 @@ window.onload = function() {
     document.getElementById("firstColumnName").innerHTML = att;
     document.getElementById("sorted").innerHTML="";
     //console.log(attributes[att]);
+    
     var attValues = attributes[att];
     for (value in attValues) {
       personArray = attValues[value];
+      //totalArray.push(personArray);
       appendRow(value, personArray);
+      //createPeople(people);
     }
   }
 }
 
-window.onload = function() {
-  var overarchingDetails = document.getElementById("details");
-  var peeps = document.getElementById("sum");
-  var detailsSmaller = document.createElement("DETAILS");
-  var summaryPerson = document.createElement("SUMMARY");
-  var personName = document.createTextNode("Person Name");
-  summaryPerson.append(personName);
-  var personDescription = document.createTextNode("Description of person");
-  detailsSmaller.append(summaryPerson);
-  detailsSmaller.append(personDescription);
-  overarchingDetails.append(peeps);
-  overarchingDetails.append(detailsSmaller);
+function createPeople(personArray) {
+  for (p of personArray) {
+    person = people[p]
+    createPersonCard(person);
+  }
 }
 
+var box;
+function createPersonCard(person) {
+  for (att in person) {
+    console.log(att + ':' + person[att]);
+  }
+}
+var socks = 5;
+function toString() {
+  
+}
+socks.toString();
+
 function appendRow(value, peopleArray) {
-  console.log(value, peopleArray);
+  //console.log(value, peopleArray);
   tbl = document.getElementById("table").getElementsByTagName("tbody")[0];
   var row = tbl.insertRow(0);
   var cell1 = row.insertCell(0);
   cell1.innerHTML = value;
   var cell2 = row.insertCell(1);
+  console.log('====================', value);
+  
+  createPeople(peopleArray);
   cell2.innerHTML = peopleArray.join(', ');
 }
     
