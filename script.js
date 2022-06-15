@@ -1,6 +1,6 @@
 var eyeColor;
 var arrayOfPeople = [];
-var personArray = [];
+var personArray = []; //array used for people in their categories.
 class Person {
   constructor(eyeColor, hairColor, languageSpoken, name) {
     this.eyeColor = eyeColor;
@@ -50,11 +50,25 @@ for (key in people) {
     attributes[att][val].push(person.name);
   }
 }
+
+//var att = eyeColor;
+var identity;
+Person.prototype.toString = function personToString() {
+  var trait = "";
+  identity = people[pers];
+  for (i = 0; i < arrayOfPeople.length; i++) {
+    for (att in attributes) {
+      trait += att + ": " + identity[att] + " ";
+    }
+    trait = pers + " " + trait;
+    return trait;
+  }
+}
+
 var number;
 var tbl;
 var name;
 
-var totalArray = [];
 window.onload = function() {
   document.getElementById("sort").onclick = function() {
     // determine which item is checked
@@ -71,46 +85,43 @@ window.onload = function() {
     document.getElementById("firstColumnName").innerHTML = att;
     document.getElementById("sorted").innerHTML="";
     //console.log(attributes[att]);
-    
+  
     var attValues = attributes[att];
     for (value in attValues) {
       personArray = attValues[value];
-      //totalArray.push(personArray);
       appendRow(value, personArray);
-      //createPeople(people);
     }
   }
 }
+var a;
+var p;
+var person;
+
 
 function createPeople(personArray) {
-  for (p of personArray) {
-    person = people[p]
-    createPersonCard(person);
+  var cellContents = [];
+  for (p in personArray) {
+    pers = personArray[p];
+    a = createPersonCard(people[pers]);
+    cellContents.push(a);
   }
+  return cellContents;
 }
 
-var box;
-function createPersonCard(person) {
-  for (att in person) {
-    console.log(att + ':' + person[att]);
-  }
+function createPersonCard(pers) {
+  attString = pers.toString();
+  return attString;
 }
-var socks = 5;
-function toString() {
-  
-}
-socks.toString();
 
-function appendRow(value, peopleArray) {
-  //console.log(value, peopleArray);
+function appendRow(value, personArray) {
+  // console.log('appendRow', value, personArray);
   tbl = document.getElementById("table").getElementsByTagName("tbody")[0];
   var row = tbl.insertRow(0);
   var cell1 = row.insertCell(0);
   cell1.innerHTML = value;
   var cell2 = row.insertCell(1);
   console.log('====================', value);
-  
-  createPeople(peopleArray);
-  cell2.innerHTML = peopleArray.join(', ');
+  var arrayOfToStrings = createPeople(personArray)
+  cell2.innerHTML = arrayOfToStrings.join(', ');
 }
     
